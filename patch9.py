@@ -51,7 +51,7 @@ class Patch9(object):
     def rect(self):
         return Rect(Point(0,0), self.surface.rect.size - Point(1,1))
 
-    def paint(self, target, rect=None):
+    def paint(self, target, rect):
         left, top, right, bottom = self.padding
         (h0, v0), (w, h) = rect
         (h3, v3) = (h0 + w), (v0 + h)
