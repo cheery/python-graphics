@@ -14,6 +14,9 @@ class Point(object):
     def __sub__(self, other):
         return Point(self.x-other.x, self.y-other.y)
 
+    def __mul__(self, scalar):
+        return Point(self.x*scalar, self.y*scalar)
+
 class Rect(object):
     def __init__(self, position, size):
         self.position = position
@@ -35,6 +38,10 @@ class Rect(object):
     
     def inset(self, left, top, right, bottom):
         return self.pad(-left, -top, -right, -bottom)
+
+    @property
+    def center(self):
+        return self.position + self.size * 0.5
 
 class Color(object):
     def __init__(self, r, g, b, a=255):
