@@ -1,7 +1,7 @@
 import pygame
 
 class Point(object):
-    def __init__(self, x, y):
+    def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
 
@@ -18,9 +18,9 @@ class Point(object):
         return Point(self.x*scalar, self.y*scalar)
 
 class Rect(object):
-    def __init__(self, position, size):
-        self.position = position
-        self.size = size
+    def __init__(self, position=None, size=None):
+        self.position = position if position else Point(0,0)
+        self.size = size if size else Point(0,0)
 
     def __iter__(self):
         return iter((self.position, self.size))
