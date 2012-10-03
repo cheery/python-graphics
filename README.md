@@ -3,7 +3,7 @@ Python Graphics Module (Unstable)
 
 This is an initiative about improving aesthetics of graphics programming on open source platforms.
 
-`graphics` is supposed to be simpler to understand and use than what pygame is. It's also named to what it is. The current implementation is inefficient and slow, and wrapped around to pygame.
+`graphics` is supposed to be simpler to understand and use than what pygame is. It's also named to what it is. The current implementation is wrapped around pygame, therefore it is inefficient and slow.
 
 Here's demonstration of the current state, it is available in examples/simple.py
 
@@ -42,6 +42,11 @@ Design Goals
  * Support multiple rendering engines, simple, complex and domain-specific ones.
  * Support multiple programming languages, do not depend on python.
  * Separate rectangles and vectors from the graphics module and make a standard out of them.
+
+Usage
+-----
+
+Make sure you've got pygame installed. Once done, see and run `develop.sh` which produces a symlink from examples/graphics into the root directory of this project. After that you can run some of the examples in the python interpreter.
 
 Module Reference
 ----------------
