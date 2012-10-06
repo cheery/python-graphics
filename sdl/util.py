@@ -39,9 +39,30 @@ class Rect(object):
     def inset(self, left, top, right, bottom):
         return self.pad(-left, -top, -right, -bottom)
 
+    def inside(self, point):
+        (x, y) = point - self.position
+        (w, h) = self.size
+        return 0 <= x < w and 0 <= y < h
+
     @property
     def center(self):
         return self.position + self.size * 0.5
+
+    @property
+    def topleft(self):
+        return self.position + self.size
+
+    @property
+    def bottomright(self):
+        return self.position + self.size
+
+    @property
+    def topright(self):
+        return Point(self.bottomright.x, self.topleft.y)
+
+    @property
+    def bottomleft(self):
+        return Point(self.topleft.x, self.bottomright.y)
 
 class Color(object):
     def __init__(self, r, g, b, a=255):
@@ -49,6 +70,8 @@ class Color(object):
         self.g = g
         self.b = b
         self.a = a
+        color = ''.join(map(chr,self))
+        self.surface = Surface(pygame.image.frombuffer(color, (1,1), "RGBA"))
 
     def __iter__(self):
         return iter((self.r, self.g, self.b, self.a))
@@ -62,8 +85,7 @@ class Color(object):
         return self.paint(target, rect, pygame.BLEND_RGBA_MULT)
 
     def paint(self, target, rect, special_flags=0):
-        (x, y), (w, h) = rect
-        target.internal.fill(tuple(self), (x,y,w,h), special_flags=special_flags)
+        self.surface.paint(target, rect, special_flags)
         return target
 
 class Surface(object):
