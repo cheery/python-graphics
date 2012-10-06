@@ -17,6 +17,9 @@ class Point(object):
     def __mul__(self, scalar):
         return Point(self.x*scalar, self.y*scalar)
 
+    def __repr__(self):
+        return "Point(%r, %r)" % tuple(self)
+
 class Rect(object):
     def __init__(self, position=None, size=None):
         self.position = position if position else Point(0,0)
@@ -50,7 +53,7 @@ class Rect(object):
 
     @property
     def topleft(self):
-        return self.position + self.size
+        return self.position
 
     @property
     def bottomright(self):
@@ -80,6 +83,9 @@ class Rect(object):
     def topcenter(self):
         return Point(self.center.x, self.topleft.y)
 
+    def __repr__(self):
+        return "Rect(%r, %r)" % tuple(self)
+
 class Color(object):
     def __init__(self, r, g, b, a=255):
         self.r = r
@@ -103,6 +109,9 @@ class Color(object):
     def paint(self, target, rect, special_flags=0):
         self.surface.paint(target, rect, special_flags)
         return target
+
+    def __repr__(self):
+        return "Color(%r, %r, %r, %r)" % tuple(self)
 
 class Surface(object):
     def __init__(self, internal):
