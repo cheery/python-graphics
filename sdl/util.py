@@ -64,6 +64,22 @@ class Rect(object):
     def bottomleft(self):
         return Point(self.topleft.x, self.bottomright.y)
 
+    @property
+    def centerleft(self):
+        return Point(self.topleft.x, self.center.y)
+
+    @property
+    def centerright(self):
+        return Point(self.bottomright.x, self.center.y)
+
+    @property
+    def bottomcenter(self):
+        return Point(self.center.x, self.bottomright.y)
+
+    @property
+    def topcenter(self):
+        return Point(self.center.x, self.topleft.y)
+
 class Color(object):
     def __init__(self, r, g, b, a=255):
         self.r = r
